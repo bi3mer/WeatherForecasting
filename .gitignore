@@ -88,6 +88,8 @@ ENV/
 # Rope project settings
 .ropeproject
 
-#weather zip files
+# weather zip files
 *.zip
 
+# weather directories
+WeatherDirs/*
