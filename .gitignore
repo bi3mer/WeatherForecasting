@@ -93,3 +93,7 @@ ENV/
 
 # weather directories
 WeatherDirs/*
+
+# Lorenz pngs and videos
+LorenzPhotos/*.png
+LorenzPhotos/*.mp4
