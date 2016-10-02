@@ -18,14 +18,43 @@ import sys
 const_s = 10 # -> approach 2
 const_r = 28
 const_b = 8.0/3.0
+dt = .01
 
 def lorenz(x, y, z, s=const_s, r=const_r, b=const_b):
+	'''
+	Calculate lorenz system values from formula
+
+	Parameters:
+		x - x point
+		y - y point
+		z - z point
+		s - lorenz formula variable
+		r - lornez formula variable
+		b - lorenz formula variable
+
+	Return
+		x_dot - result x coord
+		y_dot - result y coord
+		z_dot - result y coord
+	'''
 	x_dot = s*(y - x)
 	y_dot = r*x - y - x*z
 	z_dot = x*y - b*z
 	return x_dot, y_dot, z_dot
 
-def build_system(stepCnt,dt, s=const_s, r=const_r, b=const_b):
+def build_system(stepCnt, s=const_s, r=const_r, b=const_b):
+	'''
+	build complete array of x,y,z Lorenz System values over
+	a given set of time
+
+	Parameters:
+		stepCnt - amount of time to run Lorenz system
+
+	Return:
+		xs - array of x coordinate lorenz system results 
+		ys - array of y coordinate lorenz system results
+		zs - array of z coordiante lorenz system results
+	'''
 	# Need one more for the initial values
 	xs = np.empty((stepCnt + 1,))
 	ys = np.empty((stepCnt + 1,))
@@ -44,7 +73,15 @@ def build_system(stepCnt,dt, s=const_s, r=const_r, b=const_b):
 
 	return xs, ys, zs
 
-def build_images(stepCnt,dt):
+def build_images(stepCnt):
+	'''
+	Build images over a given step count. This will loop through a series
+	of values of s to demonstrate how the system will perform in project
+	high water.
+
+	Parameters:
+		stepCnt - number of times to run Lorenz System
+	'''
 	cnt = 0
 	for s in range(const_s*24, 2, -1):
 		# maniuplate s to be in boundary
@@ -74,4 +111,4 @@ def build_images(stepCnt,dt):
 
 if __name__ == "__main__":
 	if len(sys.argv) >= 2:
-		build_images(1000,.01)
+		build_images(1000)
